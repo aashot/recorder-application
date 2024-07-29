@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Meet Recorder</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <div class="video-container" id="videoContainer">
+      <video class="video-container__real-time" id="realTimeVideoElement" autoplay muted></video>
+      <canvas class="video-container__canvas" id="canvasElement" width="740" height="580"></canvas>
+      <video class="video-container__recording hide" id="recordedVideo" controls></video>
+    </div>
+    <div class="controls">
+      <button class="controls__button" id="startRecording">Start Recording</button>
+      <button class="controls__button" id="stopRecording" disabled>Stop Recording</button>
+      <label class="controls__label" for="imageUpload">
+        <span class="controls__button">Add Image</span>
+        <input class="controls__file" type="file" id="imageUpload" accept="image/*">
+      </label>
+      <button class="controls__button" id="playRecording" disabled>Play</button>
+      <button class="controls__button" id="downloadRecording" disabled>Download</button>
+      <label class="controls__label" for="micVolume">
+        <img src="/public/volume.svg" class="controls__volume-image" alt="volume icon" />
+      </label>
+      <input class="controls__slider" type="range" id="micVolume" min="0" max="2" value="2" step="0.01">
+    </div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
