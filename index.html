@@ -3,30 +3,30 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="apple-touch-icon" sizes="57x57" href="/public/favicons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/public/favicons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/public/favicons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/public/favicons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/public/favicons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/public/favicons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/public/favicons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/public/favicons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/public/favicons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/public/favicons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/public/favicons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/public/favicons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/public/favicons/favicon-16x16.png">
-  <link rel="manifest" href="/public/favicons//manifest.json">
+  <link rel="apple-touch-icon" sizes="57x57" href="public/favicons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="public/favicons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="public/favicons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="public/favicons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="public/favicons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="public/favicons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="public/favicons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="public/favicons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="public/favicons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="public/favicons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="public/favicons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicons/favicon-16x16.png">
+  <link rel="manifest" href="public/favicons//manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/public/favicons/ms-icon-144x144.png">
+  <meta name="msapplication-TileImage" content="public/favicons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Video Meet Recorder</title>
-  <link rel="stylesheet" href="/styles/variables.css">
-  <link rel="stylesheet" href="/styles/reset.css">
-  <link rel="stylesheet" href="/styles/layout.css">
-  <link rel="stylesheet" href="/styles/components.css">
-  <link rel="stylesheet" href="/styles/animations.css">
+  <link rel="stylesheet" href="styles/variables.css">
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/animations.css">
 </head>
 
 <body>
@@ -34,40 +34,40 @@
     <div class="video-container" id="videoContainer">
       <video class="video-container__real-time" id="realTimeVideoElement" autoplay muted></video>
       <div class="video-container__canvas--wrapper">
-        <img class="video-container__canvas--recording-idicator hide" id="recordingIndicator"
-          src="/public/icons/rec.svg" alt="rec icon">
+        <img class="video-container__canvas--recording-idicator hide" id="recordingIndicator" src="public/icons/rec.svg"
+          alt="rec icon">
         <canvas class="video-container__canvas" id="canvasElement" width="740" height="580"></canvas>
       </div>
       <video class="video-container__recording hide" id="recordedVideo" controls></video>
     </div>
     <div class="controls">
       <label class="controls__label" for="imageUpload">
-        <img class="controls__icon" src="/public/icons/upload-image.svg" alt="uplaod image">
+        <img class="controls__icon" src="public/icons/upload-image.svg" alt="uplaod image">
         <input class="controls__file" type="file" id="imageUpload" accept="image/*">
       </label>
       <div class="controls__wrapper">
         <button class="controls__button controls__button--recording" id="recordingButton" title="start recording"
           aria-label="Start Recording">
-          <img class="controls__icon" src="/public/icons/start-record.svg" id="recordingIcon" title="start recording"
+          <img class="controls__icon" src="public/icons/start-record.svg" id="recordingIcon" title="start recording"
             alt="Start Recording Icon">
         </button>
         <label class="controls__label" for="micVolume">
-          <img src="/public/icons/volume.svg" class="controls__volume-image" alt="volume icon" />
+          <img src="public/icons/volume.svg" class="controls__volume-image" alt="volume icon" />
         </label>
         <input class="controls__slider" type="range" id="micVolume" min="0" max="2" value="2" step="0.01">
       </div>
 
       <div class="controls__wrapper">
         <button class="controls__button" id="playRecording" disabled>
-          <img class="controls__icon" src="/public/icons/play.svg" alt="play icon">
+          <img class="controls__icon" src="public/icons/play.svg" alt="play icon">
         </button>
         <button class="controls__button" id="downloadRecording" disabled>
-          <img class="controls__icon" src="/public/icons/donwload.svg" alt="download icon">
+          <img class="controls__icon" src="public/icons/donwload.svg" alt="download icon">
         </button>
       </div>
     </div>
   </div>
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="src/main.js"></script>
 </body>
 
 </html>

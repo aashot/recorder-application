@@ -34,7 +34,7 @@ export function setupRecordingControls({
       }
       recordingIndicator.classList.add('hide');
       recordingButton.classList.remove('recording');
-      recordingIcon.src = '/public/icons/start-record.svg';
+      recordingIcon.src = 'public/icons/start-record.svg';
       recordingButton.setAttribute('aria-label', 'Start Recording');
     } else {
       console.log('Starting recording...');
@@ -43,7 +43,7 @@ export function setupRecordingControls({
       console.log('recordingIndicator', recordingIndicator)
       recordedVideoElement.classList.add('hide');
       recordingButton.classList.add('recording');
-      recordingIcon.src = '/public/icons/stop-record.svg';
+      recordingIcon.src = 'public/icons/stop-record.svg';
       recordingButton.setAttribute('aria-label', 'Stop Recording');
       playRecordingButton.disabled = true;
       downloadRecordingButton.disabled = true;
