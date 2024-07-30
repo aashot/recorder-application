@@ -1,21 +1,23 @@
-import { createDownloadLink } from '../utils'
+import { createDownloadLink } from '../utils';
 
 /**
- * Sets up event listeners for recording control buttons.
+ * Sets up event listeners for the recording control buttons and manages recording state.
  * @param {Object} params - The parameters for setting up event listeners.
- * @param {HTMLButtonElement} params.startRecordingButton - The button to start recording.
- * @param {HTMLButtonElement} params.stopRecordingButton - The button to stop recording.
+ * @param {HTMLButtonElement} params.recordingButton - The button to start/stop recording.
+ * @param {HTMLImageElement} params.recordingIcon - The icon inside the recording button.
+ * @param {HTMLImageElement} params.recordingIndicator - The video recording indicator.
  * @param {HTMLButtonElement} params.playRecordingButton - The button to play the recorded video.
  * @param {HTMLButtonElement} params.downloadRecordingButton - The button to download the recording.
  * @param {MediaRecorder} params.mediaRecorder - The media recorder instance.
  * @param {HTMLVideoElement} params.recordedVideoElement - The recorded video element.
- * @param {HTMLVideoElement} params.canvasElement - The canvas element.
+ * @param {HTMLCanvasElement} params.canvasElement - The canvas element.
  * @param {Array} params.chunks - Array to store recorded video chunks.
  * @param {Blob} params.recordedBlob - The recorded video blob.
  */
 export function setupRecordingControls({
-  startRecordingButton,
-  stopRecordingButton,
+  recordingButton,
+  recordingIcon,
+  recordingIndicator,
   playRecordingButton,
   downloadRecordingButton,
   mediaRecorder,
@@ -24,23 +26,28 @@ export function setupRecordingControls({
   chunks,
   recordedBlob
 }) {
-  startRecordingButton.addEventListener('click', () => {
-    console.log('Starting recording...');
-    mediaRecorder.start();
-    recordedVideoElement.classList.add('hide');
-    startRecordingButton.disabled = true;
-    stopRecordingButton.disabled = false;
-    playRecordingButton.disabled = true;
-    downloadRecordingButton.disabled = true;
-  });
-
-  stopRecordingButton.addEventListener('click', () => {
-    console.log('Stopping recording...');
-    if (mediaRecorder.state !== 'inactive') {
-      mediaRecorder.stop();
+  recordingButton.addEventListener('click', () => {
+    if (recordingButton.classList.contains('recording')) {
+      console.log('Stopping recording...');
+      if (mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+      }
+      recordingIndicator.classList.add('hide');
+      recordingButton.classList.remove('recording');
+      recordingIcon.src = '/public/icons/start-record.svg';
+      recordingButton.setAttribute('aria-label', 'Start Recording');
+    } else {
+      console.log('Starting recording...');
+      mediaRecorder.start();
+      recordingIndicator.classList.remove('hide');
+      console.log('recordingIndicator', recordingIndicator)
+      recordedVideoElement.classList.add('hide');
+      recordingButton.classList.add('recording');
+      recordingIcon.src = '/public/icons/stop-record.svg';
+      recordingButton.setAttribute('aria-label', 'Stop Recording');
+      playRecordingButton.disabled = true;
+      downloadRecordingButton.disabled = true;
     }
-    startRecordingButton.disabled = false;
-    stopRecordingButton.disabled = true;
   });
 
   mediaRecorder.ondataavailable = (event) => {

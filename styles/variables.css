@@ -1,0 +1,8 @@
+:root {
+  --background-color: #f0f2f5;
+  --button-bg-color: #4285f4;
+  --button-disabled-bg-color: #ccc;
+  --border-color: #ddd;
+  --slider-track-bg-color: #ddd;
+  --slider-thumb-bg-color: #4285f4;
+}

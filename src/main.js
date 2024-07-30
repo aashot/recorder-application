@@ -5,8 +5,9 @@ import { setupImageDrag } from './events/imageDrag.js';
 import { drawCanvas } from './drawing.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const startRecordingButton = document.getElementById('startRecording');
-  const stopRecordingButton = document.getElementById('stopRecording');
+  const recordingButton = document.getElementById('recordingButton');
+  const recordingIcon = document.getElementById('recordingIcon');
+  const recordingIndicator = document.getElementById('recordingIndicator');
   const playRecordingButton = document.getElementById('playRecording');
   const downloadRecordingButton = document.getElementById('downloadRecording');
   const micVolumeSlider = document.getElementById('micVolume');
@@ -45,8 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     setupRecordingControls({
-      startRecordingButton,
-      stopRecordingButton,
+      recordingButton,
+      recordingIcon,
+      recordingIndicator,
       playRecordingButton,
       downloadRecordingButton,
       mediaRecorder,
