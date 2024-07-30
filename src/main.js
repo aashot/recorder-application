@@ -1,5 +1,7 @@
 import { initializeMedia } from './media.js';
-import { setupEventListeners } from './eventListeners.js';
+import { setupRecordingControls } from './events/recordingControls.js';
+import { setupImageUpload } from './events/imageUpload.js';
+import { setupImageDrag } from './events/imageDrag.js';
 import { drawCanvas } from './drawing.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -15,6 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const images = [];
   const imagePositions = [];
+  const chunks = [];
+  const recordedBlob = { value: null };
 
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -37,23 +41,35 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const slider = event.target;
       const value = (slider.value - slider.min) / (slider.max - slider.min);
-      slider.style.background = `linear-gradient(to right, var(--button-bg-color) ${value * 100}%, var(--slider-track-bg-color) ${value * 100}%)`;
+      slider.style.background = `linear-gradient(to right, var(--slider-thumb-bg-color) ${value * 100}%, var(--slider-track-bg-color) ${value * 100}%)`;
     });
 
-    setupEventListeners({
+    setupRecordingControls({
       startRecordingButton,
       stopRecordingButton,
       playRecordingButton,
       downloadRecordingButton,
-      uploadImageInput,
       mediaRecorder,
-      canvasElement,
-      realTimeVideoElement,
       recordedVideoElement,
+      canvasElement,
+      chunks,
+      recordedBlob
+    });
+
+    setupImageUpload({
+      uploadImageInput,
+      canvasElement,
       images,
       imagePositions
     });
+
+    setupImageDrag({
+      canvasElement,
+      images,
+      imagePositions
+    });
+
   } catch (error) {
-    console.error('Error accessing media devices:', error);
+    console.error('Error initializing media:', error);
   }
 });
