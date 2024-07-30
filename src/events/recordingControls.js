@@ -1,4 +1,6 @@
 import { createDownloadLink } from '../utils';
+import startRecordIcon from '../../assets/icons/start-record.svg';
+import stopRecordIcon from '../../assets/icons/stop-record.svg';
 
 /**
  * Sets up event listeners for the recording control buttons and manages recording state.
@@ -34,7 +36,7 @@ export function setupRecordingControls({
       }
       recordingIndicator.classList.add('hide');
       recordingButton.classList.remove('recording');
-      recordingIcon.src = 'assets/icons/start-record.svg';
+      recordingIcon.src = startRecordIcon;
       recordingButton.setAttribute('aria-label', 'Start Recording');
     } else {
       console.log('Starting recording...');
@@ -43,7 +45,7 @@ export function setupRecordingControls({
       console.log('recordingIndicator', recordingIndicator)
       recordedVideoElement.classList.add('hide');
       recordingButton.classList.add('recording');
-      recordingIcon.src = 'assets/icons/stop-record.svg';
+      recordingIcon.src = stopRecordIcon;
       recordingButton.setAttribute('aria-label', 'Stop Recording');
       playRecordingButton.disabled = true;
       downloadRecordingButton.disabled = true;
