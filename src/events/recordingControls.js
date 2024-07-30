@@ -10,6 +10,7 @@ import stopRecordIcon from '../../assets/icons/stop-record.svg';
  * @param {HTMLImageElement} params.recordingIndicator - The video recording indicator.
  * @param {HTMLButtonElement} params.playRecordingButton - The button to play the recorded video.
  * @param {HTMLButtonElement} params.downloadRecordingButton - The button to download the recording.
+ * @param {HTMLInputElement} params.uploadImageButton - The file input wrapper element for image upload.
  * @param {MediaRecorder} params.mediaRecorder - The media recorder instance.
  * @param {HTMLVideoElement} params.recordedVideoElement - The recorded video element.
  * @param {HTMLCanvasElement} params.canvasElement - The canvas element.
@@ -22,6 +23,7 @@ export function setupRecordingControls({
   recordingIndicator,
   playRecordingButton,
   downloadRecordingButton,
+  uploadImageButton,
   mediaRecorder,
   recordedVideoElement,
   canvasElement,
@@ -38,17 +40,20 @@ export function setupRecordingControls({
       recordingButton.classList.remove('recording');
       recordingIcon.src = startRecordIcon;
       recordingButton.setAttribute('aria-label', 'Start Recording');
+      playRecordingButton.disabled = false;
+      downloadRecordingButton.disabled = false;
     } else {
       console.log('Starting recording...');
       mediaRecorder.start();
       recordingIndicator.classList.remove('hide');
-      console.log('recordingIndicator', recordingIndicator)
       recordedVideoElement.classList.add('hide');
       recordingButton.classList.add('recording');
       recordingIcon.src = stopRecordIcon;
       recordingButton.setAttribute('aria-label', 'Stop Recording');
       playRecordingButton.disabled = true;
       downloadRecordingButton.disabled = true;
+      uploadImageButton.classList.remove('disabled'); // Ensure it's available during recording
+      uploadImageButton.disabled = false;  // Ensure it is enabled
     }
   });
 
@@ -66,6 +71,8 @@ export function setupRecordingControls({
     chunks.length = 0;
     playRecordingButton.disabled = false;
     downloadRecordingButton.disabled = false;
+    uploadImageButton.classList.remove('disabled'); // Re-enable after recording stops
+    uploadImageButton.disabled = false;  // Ensure it is enabled
   };
 
   playRecordingButton.addEventListener('click', () => {
@@ -73,7 +80,14 @@ export function setupRecordingControls({
       canvasElement.classList.add('hide');
       recordedVideoElement.classList.remove('hide');
       recordedVideoElement.play();
+      uploadImageButton.classList.add('disabled'); // Disable during video play
+      uploadImageButton.disabled = true;
     }
+  });
+
+  recordedVideoElement.addEventListener('pause', () => {
+    uploadImageButton.classList.remove('disabled'); // Re-enable when video pauses
+    uploadImageButton.disabled = false;
   });
 
   downloadRecordingButton.addEventListener('click', () => {

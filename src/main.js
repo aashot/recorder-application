@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const playRecordingButton = document.getElementById('playRecording');
   const downloadRecordingButton = document.getElementById('downloadRecording');
   const micVolumeSlider = document.getElementById('micVolume');
+  const uploadImageButton = document.getElementById('uploadImageButton');
   const uploadImageInput = document.getElementById('imageUpload');
   const canvasElement = document.getElementById('canvasElement');
   const realTimeVideoElement = document.getElementById('realTimeVideoElement');
@@ -51,6 +52,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       recordingIndicator,
       playRecordingButton,
       downloadRecordingButton,
+      uploadImageButton,
       mediaRecorder,
       recordedVideoElement,
       canvasElement,
